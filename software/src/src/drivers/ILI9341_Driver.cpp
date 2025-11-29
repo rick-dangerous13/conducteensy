@@ -126,24 +126,20 @@ void ILI9341_Driver::UpdateDisplay(const uint8_t* frame_buffer) {
 }
 
 /*static*/
-void ILI9341_Driver::SPI_send(void *bufr, size_t n) {
+void ILI9341_Driver::SPI_send([[maybe_unused]] void *bufr, [[maybe_unused]] size_t n) {
   // This method is provided for API compatibility
   // ILI9341_t3 library handles SPI internally
   // If needed for other purposes, implement direct SPI transfer here
-  (void)bufr;
-  (void)n;
 }
 
 /*static*/
-void ILI9341_Driver::AdjustOffset(uint8_t offset) {
+void ILI9341_Driver::AdjustOffset([[maybe_unused]] uint8_t offset) {
   // Not applicable for ILI9341 - it doesn't have RAM offset issues like SH1106
-  (void)offset;
 }
 
 /*static*/
-void ILI9341_Driver::ChangeSpeed(uint32_t speed) {
+void ILI9341_Driver::ChangeSpeed([[maybe_unused]] uint32_t speed) {
   // SPI speed is managed by ILI9341_t3 library
-  (void)speed;
 }
 
 /*static*/
@@ -155,8 +151,7 @@ void ILI9341_Driver::SetFlipMode(bool flip180) {
 }
 
 /*static*/
-void ILI9341_Driver::SetContrast(uint8_t contrast) {
+void ILI9341_Driver::SetContrast([[maybe_unused]] uint8_t contrast) {
   // ILI9341 doesn't have contrast control like OLED
   // Could potentially adjust brightness through backlight if connected
-  (void)contrast;
 }

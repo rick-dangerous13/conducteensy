@@ -6,6 +6,14 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdarg.h>
+#include <stdlib.h>
+
+// ASCII printable character range
+static constexpr char ASCII_PRINTABLE_START = 32;
+static constexpr char ASCII_PRINTABLE_END = 126;
+
+// Buffer size for printf
+static constexpr size_t PRINTF_BUFFER_SIZE = 64;
 
 // Simple 5x7 font - basic ASCII characters starting from space (32)
 static const uint8_t font5x7[] = {
@@ -256,9 +264,9 @@ void Graphics::print(char c) {
     return;
   }
   
-  if (c < 32 || c > 126) c = '?';
+  if (c < ASCII_PRINTABLE_START || c > ASCII_PRINTABLE_END) c = '?';
   
-  int index = (c - 32) * 5;
+  int index = (c - ASCII_PRINTABLE_START) * 5;
   for (int i = 0; i < 5; ++i) {
     uint8_t col = font5x7[index + i];
     for (int j = 0; j < 7; ++j) {
@@ -283,7 +291,7 @@ void Graphics::print(int n) {
 }
 
 void Graphics::printf(const char *fmt, ...) {
-  char buf[64];
+  char buf[PRINTF_BUFFER_SIZE];
   va_list args;
   va_start(args, fmt);
   vsnprintf(buf, sizeof(buf), fmt, args);

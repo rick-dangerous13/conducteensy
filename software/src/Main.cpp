@@ -104,7 +104,3 @@ void loop() {
   // Handle display updates
   display::Update();
 }
-
-// Arduino sketch compatibility
-void setup(void);
-void loop(void);
